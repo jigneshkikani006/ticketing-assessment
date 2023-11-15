@@ -21,7 +21,7 @@ Gradle
 
 How to Install and Run the project
 -----------------------------------------
-1.Clone the project in IDE(intelliJ)
+1.Clone the project in IDE(intelliJ) from URL -> https://github.com/jigneshkikani006/ticketing-assessment
 2.Compile the project using Gradle
     -CLI(./gradlew clean build) or locate gradle icon on right side panel->Tasks->build->click clean & build
 3.Once successfully built, run the application
