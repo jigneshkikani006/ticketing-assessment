@@ -25,7 +25,6 @@ public class TicketService {
         }
         ResponseEntity<TicketResponse> response = restTemplate.exchange(url, HttpMethod.GET,
                 new HttpEntity<>(createHeaders("jignesh.kikani@zendesk.com","John@1820")), TicketResponse.class);
-        System.out.println("response=>"+response);
         return response;
     }
 

@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <h2 align="center">Zendesk Tickets</h2>
+    <h2 align="center"><a href="/tickets" style="color:black">Zendesk Tickets</a></h2>
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
@@ -42,11 +42,11 @@
     </table>
     <nav>
         <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a th:href="@{/tickets(cursor=${prevUrl})}" class="page-link">Previous</a>
+            <li class="page-item" th:classappend="${prevUrl == null} ? 'disabled' : ''">
+                <a th:href="${prevUrl != null} ? @{/tickets(cursor=${prevUrl})} : '#' " class="page-link">Previous</a>
             </li>
-            <li class="page-item">
-                <a th:href="@{/tickets(cursor=${nextUrl})}" class="page-link">Next</a>
+            <li class="page-item" th:classappend="${nextUrl == null} ? 'disabled' : ''">
+                <a th:href="${nextUrl != null} ? @{/tickets(cursor=${nextUrl})} : '#' " class="page-link">Next</a>
             </li>
         </ul>
     </nav>
