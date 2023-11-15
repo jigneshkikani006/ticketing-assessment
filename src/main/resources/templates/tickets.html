@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zendesk Tickets Pagination</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2 align="center">Zendesk Tickets</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Subject</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket: ${tickets}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.subject}"></td>
+            <td th:text="${ticket.getParsedCreatedAt}"></td>
+            <td th:text="${ticket.getParsedUpdatedAt}"></td>
+            <td th:text="${ticket.status}"></td>
+            <td>
+                <div class="d-flex">
+                    <a th:href="@{/tickets/{id}(id=${ticket.id})}" class="btn btn-info mr-2">View</a>
+                    <a th:href="@{/tickets/{id}/update(id=${ticket.id})}" class="btn btn-primary">Update</a>
+                </div>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(tickets)}">
+            <td colspan="6" class="text-center">No Records Found</td>
+        </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a th:href="@{/tickets(cursor=${prevUrl})}" class="page-link">Previous</a>
+            </li>
+            <li class="page-item">
+                <a th:href="@{/tickets(cursor=${nextUrl})}" class="page-link">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

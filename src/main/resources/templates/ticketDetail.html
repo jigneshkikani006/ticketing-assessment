@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ticket Details</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <!-- Include Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-3">
+  <h2>Ticket Details</h2>
+  <table class="table table-bordered">
+    <tr>
+      <td>ID</td>
+      <td th:text="${ticket.id}"></td>
+    </tr>
+    <tr>
+      <td>Subject</td>
+      <td th:text="${ticket.subject}"></td>
+    </tr>
+    <tr>
+      <td>CreatedAt</td>
+      <td th:text="${ticket.getParsedCreatedAt}"></td>
+    </tr>
+    <tr>
+      <td>UpdatedAt</td>
+      <td th:text="${ticket.getParsedUpdatedAt}"></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td th:text="${ticket.status}"></td>
+    </tr>
+  </table>
+  <a href="/tickets" class="btn btn-primary">Go to Tickets List</a>
+</div>
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

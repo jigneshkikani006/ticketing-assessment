@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <title>Update Ticket</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-3">
+    <h2>Update Ticket ID: <span th:text="${ticket.id}"></span></h2>
+    <h4 class="mb-3">Subject : <span th:text="${ticket.subject}"></span></h4>
+    <form action="#" th:action="@{/tickets/{id}(id=${ticket.id})}" th:object="${ticket}" th:method="put" method="post">
+        <input type="hidden" id="id" th:value="${ticket.id}"/>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="text" id="status" th:field="*{status}" class="form-control"/>
+        </div>
+        <button type="button" id="updateBtn" class="btn btn-primary">Update</button>
+    </form>
+    <a href="/tickets" class="btn btn-info mt-3">Back to Tickets List</a>
+    <script>
+$(document).ready(function() {
+    $('#updateBtn').click(function() {
+        let ticketId = $('#id').val();
+        let url = '/tickets/' + ticketId;
+
+        let updatedTicket = {
+            id: ticketId,
+            status: $('#status').val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(updatedTicket),
+            contentType: 'application/json',
+            success: function() {
+                window.location.href = url;
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
+</script>
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
