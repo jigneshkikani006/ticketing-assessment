@@ -24,7 +24,7 @@ public class TicketService {
             url = cursor;
         }
         ResponseEntity<TicketResponse> response = restTemplate.exchange(url, HttpMethod.GET,
-                new HttpEntity<>(createHeaders("jignesh.kikani@zendesk.com","John@1820")), TicketResponse.class);
+                new HttpEntity<>(createHeaders("username","password")), TicketResponse.class);
         return response;
     }
 
@@ -33,7 +33,7 @@ public class TicketService {
         ResponseEntity<TicketWrapper> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                new HttpEntity<>(createHeaders("jignesh.kikani@zendesk.com", "John@1820")),
+                new HttpEntity<>(createHeaders("username", "password")),
                 TicketWrapper.class
         );
         return response.getBody().getTicket();
@@ -41,7 +41,7 @@ public class TicketService {
 
     public void updateTicket(Long id, Ticket updatedTicket) {
         String url = "https://z3nzendeskcodingchallenge.zendesk.com/api/v2/tickets/" + id;
-        HttpHeaders headers = createHeaders("jignesh.kikani@zendesk.com", "John@1820");
+        HttpHeaders headers = createHeaders("username", "password");
         headers.setContentType(MediaType.APPLICATION_JSON);
         UpdatableTicket updatableTicket = new UpdatableTicket();
         updatableTicket.setStatus(updatedTicket.getStatus());
