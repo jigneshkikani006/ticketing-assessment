@@ -5,6 +5,7 @@ import com.example.model.TicketResponse;
 import com.example.service.TicketService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +15,18 @@ import org.springframework.web.util.UriUtils;
 import java.nio.charset.Charset;
 
 @Controller
-public class TicketController {
+public class TicketController implements ErrorController {
     @Autowired
     private final TicketService ticketService;
 
+    private static final String PATH = "/error";
     public TicketController(TicketService ticketService) {
         this.ticketService=ticketService;
+    }
+
+    @RequestMapping("/error")
+    public String handleError() {
+        return "error";
     }
 
     @GetMapping("/")
